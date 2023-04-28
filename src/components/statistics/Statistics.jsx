@@ -1,49 +1,28 @@
-// import PropTypes from 'prop-types';
-
-// export default function Statistics({ title, stats }) {
-//   return (
-//     <section className="statistics">
-//       {title && <h2 className="title">{title}</h2>}
-
-//       <ul className="stat-list">
-//         {stats.map(stat => (
-//           <li key={stat.id} className="item">
-//             <span className="label">{stat.label}</span>
-//             <span className="percentage">{stat.percentage}</span>
-//           </li>
-//         ))}
-//       </ul>
-//     </section>
-//   );
-// }
-
-// Statistics.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   stats: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       label: PropTypes.string.isRequired,
-//       percentage: PropTypes.number.isRequired,
-//     })
-//   ).isRequired,
-// };
-
-import StatisticItem from "./StatisticItem";
+import PropTypes from 'prop-types';
+import StatisticItem from './StatisticItem';
+import css from './Statistics.module.css';
 
 export default function Statistics({ title, stats }) {
-    
   return (
-    <section className="statistics">
-      {title && <h2 className="title">{title}</h2>}
+    <section className={css.statistics}>
+      {title && <h2 className={css.title}>{title}</h2>}
 
-      <ul className="stat-list">
-        {stats.map(({id, label, percentage}) => (
-            <StatisticItem
-                key={id}
-                label={label}
-          percentage={percentage}  />
+      <ul className={css.statList}>
+        {stats.map(({ id, label, percentage }) => (
+          <StatisticItem key={id} label={label} percentage={percentage} />
         ))}
       </ul>
     </section>
   );
 }
+
+Statistics.propTypes = {
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
